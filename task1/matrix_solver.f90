@@ -11,6 +11,10 @@ real(8) :: x_vector(0:N-2), y_vector(0:N-2)
 real(8) :: det, det_1st, det_2nd
 character(80) :: frmt
 
+! This subroutine solves a system of N linear algebraic equations
+! with a corresponding matrix A of coefficients, which is expected
+! to be tridiagonal.
+ 
 ! Extract the non-zero diagonals:
 do i = 0, N-2
 	beta_vector(i) = A_matrix(i, i) ! the main diagonal
@@ -20,7 +24,7 @@ enddo
 beta_vector(N-1) = A_matrix(N-1, N-1) ! one remaining element
 
 ! Find the determinant of a tridiagonal matrix using a recurrence relation
-! det_N= beta(N-1) * det_N-1 - alpha(N-2) * gamma(N-1) * det_N-2
+! det_N = beta(N-1) * det_N-1 - alpha(N-2) * gamma(N-1) * det_N-2
 ! (in terms of three diagonals extracted above), where det_N is the determinant 
 ! of the NxN matrix, det_1 = beta(0), det_0 = 1 and det_-1 = 0:
 det_2nd = 1.d0
