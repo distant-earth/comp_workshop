@@ -9,9 +9,15 @@ integer :: N, i, A_error, b_error, res_error
 ! This program solves matrix equation A * u = b, where A is supposed to be 
 ! a tridiagonal square matrix of a given dimension N.
 
-! Ask user for the number of equations:
-write(*,*) 'Enter the number of equations:'
-read(*,*) N
+! Get the dimension of the matrix while reading input file:
+N = 0
+open(1, file = 'INPUT_matrix')
+do
+    read(1, *, end=10) test 
+    ! Real variable 'test' lets us abandon empty lines.
+    N = N + 1
+enddo
+10 close (1)
 
 ! 'INPUT_matrix' contains the matrix A itself.
 open(1, file = 'INPUT_matrix')
